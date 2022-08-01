@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:start_project_blog_g2/homepage/home_page.dart';
 import 'package:start_project_blog_g2/routes.dart';
+import 'package:start_project_blog_g2/screens/new_article.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: HomePage.rounteName,
+      initialRoute: NewArticlePage.rounteName,
       onGenerateRoute: PageRouter.generateRoute,
     );
   }
