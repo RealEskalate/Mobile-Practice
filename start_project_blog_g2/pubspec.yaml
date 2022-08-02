@@ -132,6 +132,6 @@ flutter:
           style: italic      
   assets:
     - assets/
-    - assets/icons/
-    - assets/lang/
+    # - assets/icons/
+    # - assets/lang/
 

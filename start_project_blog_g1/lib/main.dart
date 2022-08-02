@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:start_project_blog_g1/homepage/home_page.dart';
-import 'package:start_project_blog_g1/routes.dart';
+import 'package:start_project_blog_g1/features/homepage/home_page.dart';
+import 'package:start_project_blog_g1/core/routes.dart';
 
 void main() {
   runApp(const MyApp());
