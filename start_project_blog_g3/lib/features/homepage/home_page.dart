@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         backgroundColor: headerBackground,
         title: Text(
-          "Home page",
+          "MISGE WAS HERE! LOGIN PAGE IS DONE!",
           style: TextStyle(fontFamily: "Poppins Medium", color: headerText),
         ),
       ),
