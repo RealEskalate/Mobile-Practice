@@ -12,6 +12,7 @@ class NewArticlePage extends StatefulWidget {
 class _MyHomePageState extends State<NewArticlePage> {
   final _formKey = GlobalKey<FormState>();
   final tagController = TextEditingController();
+  double h = 1;
 
   final listOfTags = [];
 
@@ -68,13 +69,8 @@ class _MyHomePageState extends State<NewArticlePage> {
                           width: width - 170,
                           child: TextFormField(
                             controller: tagController,
-                            decoration: const InputDecoration(hintText: "Add tags"),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
+                            decoration:
+                                const InputDecoration(hintText: "Add tags"),
                           ),
                         ),
 
@@ -83,8 +79,12 @@ class _MyHomePageState extends State<NewArticlePage> {
                           onPressed: () {
                             String newTagValue = tagController.text;
                             if (newTagValue.isNotEmpty &
-                                !listOfTags.contains(newTagValue) & (newTagValue.length<=11)) {
+                                !listOfTags.contains(newTagValue) &
+                                (newTagValue.length <= 11)) {
                               listOfTags.add(newTagValue);
+                              if (listOfTags.length % 2 == 1) {
+                                h += 0.5;
+                              }
                               setState(() {});
                             }
                           },
@@ -101,10 +101,7 @@ class _MyHomePageState extends State<NewArticlePage> {
                       "add as many tags as you want.",
                     ),
                     // Display the tags
-                    SizedBox(
-                      height: height * 0.15, 
-                      child: buildTags()
-                      ),
+                    SizedBox(height: height * (0.1 * h), child: buildTags()),
                     // Article content
                     TextFormField(
                       maxLines: 12,
@@ -121,7 +118,8 @@ class _MyHomePageState extends State<NewArticlePage> {
                         height: 50,
                         decoration: BoxDecoration(
                             color: Color(0xff376AED),
-                            borderRadius: BorderRadius.all(Radius.circular(200)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(200)),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.5),
@@ -129,8 +127,7 @@ class _MyHomePageState extends State<NewArticlePage> {
                                 blurRadius: 7,
                                 offset: Offset(0, 3),
                               ),
-                            ]
-                          ),
+                            ]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -141,36 +138,61 @@ class _MyHomePageState extends State<NewArticlePage> {
                             Container(
                               decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.all(Radius.circular(200))),
-                              child: Icon(Icons.close,size: 40, color: Colors.black,),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(200))),
+                              child: Icon(
+                                Icons.close,
+                                size: 40,
+                                color: Colors.black,
                               ),
+                            ),
                             // add photo icon
                             Container(
-                              child: Icon(Icons.broken_image_outlined, size: 25, color: Colors.white,),
+                              child: Icon(
+                                Icons.broken_image_outlined,
+                                size: 25,
+                                color: Colors.white,
                               ),
+                            ),
                             // add video icon
                             Container(
-                              child: Icon(Icons.play_circle_outline_outlined, size: 25,color: Colors.white,),
+                              child: Icon(
+                                Icons.play_circle_outline_outlined,
+                                size: 25,
+                                color: Colors.white,
                               ),
+                            ),
                             // add texts icon
                             Container(
-                              child: Icon(Icons.format_align_left_sharp, size: 25, color: Colors.white,),
+                              child: Icon(
+                                Icons.format_align_left_sharp,
+                                size: 25,
+                                color: Colors.white,
                               ),
+                            ),
                             // add links icon
                             Container(
-                              child: Icon(Icons.link_sharp, size: 25, color: Colors.white,),
+                              child: Icon(
+                                Icons.link_sharp,
+                                size: 25,
+                                color: Colors.white,
                               ),
+                            ),
                             // add texts icon
                             Container(
-                              child: Icon(Icons.text_fields_outlined, size: 25, color: Colors.white,),
+                              child: Icon(
+                                Icons.text_fields_outlined,
+                                size: 25,
+                                color: Colors.white,
                               ),
+                            ),
                             SizedBox(
                               width: 10,
-                              )
-                            ],
-                          ),
+                            )
+                          ],
                         ),
                       ),
+                    ),
 
                     // publish button
                     Center(
@@ -178,8 +200,10 @@ class _MyHomePageState extends State<NewArticlePage> {
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: ElevatedButton(
                           style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Color(0xff376AED)),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0xff376AED)),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                             )),
                           ),
@@ -232,6 +256,7 @@ class _MyHomePageState extends State<NewArticlePage> {
                 ),
                 onDeleted: () {
                   listOfTags.remove(listOfTags[index]);
+                  h -= 0.25;
                   setState(() {});
                 }),
           ],
