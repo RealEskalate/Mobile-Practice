@@ -8,13 +8,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String best = "MISGE WAS HERE! LOGIN PAGE IS DONE!";
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
         backgroundColor: headerBackground,
         title: Text(
-          "MISGE WAS HERE! LOGIN PAGE IS DONE!",
+          best,
           style: TextStyle(fontFamily: "Poppins Medium", color: headerText),
         ),
       ),
