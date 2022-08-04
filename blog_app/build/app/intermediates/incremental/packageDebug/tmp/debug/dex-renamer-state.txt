@@ -1,4 +1,4 @@
-#Thu Aug 04 23:06:02 EAT 2022
+#Thu Aug 04 23:48:59 EAT 2022
 base.0=/home/henok/Projects/Flutter/final_demo/Mobile-Practice/blog_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

@@ -21,6 +21,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     on<LoginSubmitted>(
       (event, emit) async {
+        //REmove this, is just for test
+        emit(state.copyWith(formState: SubmissionSuccess()));
+
         emit(state.copyWith(formState: FormSubmitting()));
         try {
           final response = await authRepository.login(

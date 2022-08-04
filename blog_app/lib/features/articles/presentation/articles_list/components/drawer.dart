@@ -1,3 +1,6 @@
+import 'package:blog_app/features/articles/presentation/articles_list/articles.dart';
+import 'package:blog_app/features/auth/presentation/pages/index.dart';
+import 'package:blog_app/features/profile/presentation/pages/profiles.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/assets.dart';
@@ -91,7 +94,9 @@ class Body extends StatelessWidget {
       child: Column(
         children: [
           DrawerTile(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, ProfilePage.routeName);
+              },
               paddingLeft: CustomDrawer.paddingLeft,
               title: "Profile",
               assetPath: Assets.profile),
@@ -108,9 +113,18 @@ class Body extends StatelessWidget {
             color: Colors.white,
           ),
           DrawerTile(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, ArticlesListPage.routeName);
+              },
               paddingLeft: CustomDrawer.paddingLeft,
               title: "Articles",
+              assetPath: Assets.articles),
+          DrawerTile(
+              onPressed: () {
+                Navigator.pushNamed(context, ArticlesListPage.routeName);
+              },
+              paddingLeft: CustomDrawer.paddingLeft,
+              title: "Add Article",
               assetPath: Assets.articles)
         ],
       ),
@@ -127,7 +141,9 @@ class Footer extends StatelessWidget {
       height: 72,
       color: CustomColors.drawerBodyBkg,
       child: DrawerTile(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, LoginPage.rounteName);
+          },
           paddingLeft: CustomDrawer.paddingLeft,
           title: "Log Out",
           assetPath: Assets.logout),
