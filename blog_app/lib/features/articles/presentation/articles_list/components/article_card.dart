@@ -1,3 +1,4 @@
+import 'package:blog_app/features/articles/presentation/articles_detail/article_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:readmore/readmore.dart';
@@ -18,34 +19,40 @@ class ArticleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: Card(
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        child: Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(children: [
-              Header(
-                profileUrl: article.authorProfileUrl,
-                title: article.authorName,
-                subtitle: DateFormatter.dateFormatter(article.createdAt),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Body(
-                imageUrl: article.imageUrl,
-                content: article.content,
-                numberOfComments: article.numberOfComments,
-              ),
-              const Divider(
-                thickness: 2,
-              ),
-              Footer(
-                ratingValue: article.ratingValue,
-              )
-            ])),
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, ArticleDetailPage.rounteName);
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 8.0),
+        child: Card(
+          elevation: 2,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          child: Container(
+              padding: const EdgeInsets.all(16),
+              child: Column(children: [
+                Header(
+                  profileUrl: article.authorProfileUrl,
+                  title: article.authorName,
+                  subtitle: DateFormatter.dateFormatter(article.createdAt),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Body(
+                  imageUrl: article.imageUrl,
+                  content: article.content,
+                  numberOfComments: article.numberOfComments,
+                ),
+                const Divider(
+                  thickness: 2,
+                ),
+                Footer(
+                  ratingValue: article.ratingValue,
+                )
+              ])),
+        ),
       ),
     );
   }

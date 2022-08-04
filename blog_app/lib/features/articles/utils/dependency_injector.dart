@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '../data_provider/article_provider.dart';
 import '../data_provider/article_provider_interface.dart';
 import '../data_provider/mock_article_provider.dart';
-import '../repository/repository.dart';
+import '../repository/articles_list_repository.dart';
 
 
 class DependencyInjector {
