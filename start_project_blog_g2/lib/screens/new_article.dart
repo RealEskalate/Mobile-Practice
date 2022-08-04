@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class NewArticlePage extends StatefulWidget {
   const NewArticlePage({Key? key, required this.title}) : super(key: key);
@@ -91,8 +94,8 @@ class _MyHomePageState extends State<NewArticlePage> {
                           elevation: 2.0,
                           fillColor: Colors.white,
                           hoverColor: Colors.black12,
-                          child: Icon(Icons.add,
-                              size: 25.0, color: Color(0xff376AED)),
+                          child: Icon(Icons.add_circle_outline_outlined,
+                              color: Color(0xff376AED)),
                           shape: const CircleBorder(),
                         ),
                       ],
@@ -147,8 +150,12 @@ class _MyHomePageState extends State<NewArticlePage> {
                               ),
                             ),
                             // add photo icon
-                            Container(
-                              child: Icon(
+                            IconButton(
+                              onPressed: (() {
+                                getImage();
+                                print("working");
+                              }),
+                              icon: Icon(
                                 Icons.broken_image_outlined,
                                 size: 25,
                                 color: Colors.white,
@@ -263,5 +270,17 @@ class _MyHomePageState extends State<NewArticlePage> {
         );
       },
     );
+  }
+
+  /// Get from gallery
+
+  final imagePicker = ImagePicker();
+  late File imageFile;
+
+  Future getImage() async {
+    var image = await imagePicker.getImage(source: ImageSource.gallery);
+    setState(() {
+      imageFile = File(image!.path);
+    });
   }
 }
