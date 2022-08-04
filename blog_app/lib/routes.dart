@@ -1,4 +1,4 @@
-
+import 'package:blog_app/features/articles/presentation/articles_list/articles.dart';
 import 'package:flutter/material.dart';
 import 'features/auth/presentation/pages/index.dart';
 
@@ -9,6 +9,11 @@ class PageRouter {
       //   return MaterialPageRoute(builder: (context) {
       //     return HomePage();
       //   });
+
+      case ArticlesListPage.routeName:
+        return MaterialPageRoute(builder: (context) {
+          return const ArticlesListPage();
+        });
 
       case RegisterPage.rounteName:
         return MaterialPageRoute(builder: (context) {

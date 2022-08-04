@@ -1,4 +1,5 @@
 import 'package:blog_app/core/index.dart';
+import 'package:blog_app/features/articles/presentation/articles_list/articles.dart';
 import 'package:blog_app/features/auth/presentation/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,7 +39,7 @@ class _LoginFormState extends State<LoginForm> {
           // print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
           if (state.formState is SubmissionSuccess) {
             // context.go("/home");
-            Navigator.pushNamed(context, "/homepage");
+            Navigator.pushNamed(context, ArticlesListPage.routeName);
           }
         },
         child: Form(
@@ -48,13 +49,13 @@ class _LoginFormState extends State<LoginForm> {
               BlocBuilder<LoginBloc, LoginState>(
                 builder: (context, state) {
                   return CustomTextField(
-                      key: const Key("signInEmailField"),
-                      hintText: 'Email',
-                      inputType: TextInputType.emailAddress,
-                      validator: (value) =>
-                          _validator.validateEmail(value)?.toString(),
-                      onChanged: (value) => email = value,
-                      );
+                    key: const Key("signInEmailField"),
+                    hintText: 'Email',
+                    inputType: TextInputType.emailAddress,
+                    validator: (value) =>
+                        _validator.validateEmail(value)?.toString(),
+                    onChanged: (value) => email = value,
+                  );
                 },
               ),
               SizedBox(
@@ -102,7 +103,7 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-             const ForgotPasswordButton(),
+              const ForgotPasswordButton(),
               SocialIcons(
                 onPressed: () {},
               ),

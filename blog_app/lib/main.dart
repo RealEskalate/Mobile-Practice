@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
+import 'features/articles/bloc/filter/filter_bloc.dart';
+import 'features/articles/utils/dependency_injector.dart';
 import 'features/auth/domain/repository/index.dart';
 import 'features/auth/presentation/bloc/signup/signup.dart';
 import 'features/auth/presentation/bloc/login/login.dart';
@@ -25,6 +27,11 @@ class MyApp extends StatelessWidget {
         value: authRepo,
         child: MultiBlocProvider(
             providers: [
+              BlocProvider(
+                create: (context) => FilterBloc(
+                    articlesRepository:
+                        DependencyInjector.getArticlesRepository()!),
+              ),
               BlocProvider(
                 create: (_) => SignupBloc(
                   authRepository: authRepo,
