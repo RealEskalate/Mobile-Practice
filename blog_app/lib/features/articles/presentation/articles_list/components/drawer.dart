@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/assets.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/styles.dart';
+import '../../add_edit_article/New_article.dart';
 import 'circular_avatar.dart';
 import 'drawer_tile.dart';
 
@@ -121,7 +122,7 @@ class Body extends StatelessWidget {
               assetPath: Assets.articles),
           DrawerTile(
               onPressed: () {
-                Navigator.pushNamed(context, ArticlesListPage.routeName);
+                Navigator.pushNamed(context, AddArticlePage.routeName);
               },
               paddingLeft: CustomDrawer.paddingLeft,
               title: "Add Article",
