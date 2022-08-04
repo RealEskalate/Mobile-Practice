@@ -17,6 +17,7 @@ class Validators {
     }
 
     RegExp regExp =
+        // RegExp(r'^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$');
         RegExp(r'^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$');
 
     if (!regExp.hasMatch(email!)) {
@@ -26,14 +27,15 @@ class Validators {
 
   String? validatePassword(String? password) {
     RegExp regExp = RegExp(
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
+        // r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$');
+        r'^.{4,}$');
 
     if (password?.length == 0) {
       return 'Please input password!';
     }
 
     if (!regExp.hasMatch(password!)) {
-      return 'Password must be at least 8 characters and contain a number, a special character, a capital and a small letter.';
+      return 'Password must be at least 4 characters.';
     }
   }
 }
