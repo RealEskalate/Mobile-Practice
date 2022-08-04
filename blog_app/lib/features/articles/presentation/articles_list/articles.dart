@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../profile/presentation/pages/profiles.dart';
 import '../../bloc/filter/filter_bloc.dart';
 import '../../utils/assets.dart';
 import '../../utils/styles.dart';
@@ -57,6 +58,7 @@ class _ArticlesListPageState extends State<ArticlesListPage> {
                       textAlign: TextAlign.center, style: Styles.appBarText)),
               CircularAvator(
                   onPressed: () {
+                    Navigator.pushNamed(context, ProfilePage.routeName);
                     debugPrint("UserProfile clicked");
                   },
                   imageUrl:
