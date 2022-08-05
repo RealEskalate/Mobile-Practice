@@ -1,4 +1,6 @@
 import 'package:blog_app/features/auth/data/auth_data_index.dart';
+import 'package:blog_app/features/user/data/user_data_provider.dart';
+import 'package:blog_app/features/user/domain/entities/user.dart';
 
 class AuthRepository {
   final AuthDataProvider authDataProvider;
@@ -13,7 +15,10 @@ class AuthRepository {
   }
 
   void getUser() async {
-    authDataProvider.getUserModel();
+    // authDataProvider.getUserModel();
+    final a = UserProvider();
+    List<User> res = await a.getAllUser();
+    print(res);
   }
 
   Future<void> signup({
