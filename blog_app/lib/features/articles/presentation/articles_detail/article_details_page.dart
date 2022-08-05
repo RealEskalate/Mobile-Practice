@@ -10,7 +10,7 @@ import '../../bloc/comment/comment_bloc.dart';
 import '../../bloc/comment/comment_event.dart';
 import '../../bloc/comment/comment_state.dart';
 import '../../data_provider/mockArticleDetail.dart';
-import '../../models/article copy.dart';
+import '../../models/article.dart';
 import '../../models/comment.dart';
 
 
