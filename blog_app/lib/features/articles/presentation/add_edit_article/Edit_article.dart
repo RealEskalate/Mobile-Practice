@@ -152,35 +152,35 @@ Widget attachments = Container(
       ),
       Expanded(
         child: Icon(
-          CustomIcons.image,
+          Icons.image,
           color: Colors.white,
           size: 24,
         ),
       ),
       Expanded(
         child: Icon(
-          CustomIcons.play,
+          Icons.play_circle,
           color: Colors.white,
           size: 24,
         ),
       ),
       Expanded(
         child: Icon(
-          CustomIcons.align,
+          Icons.content_paste,
           color: Colors.white,
           size: 24,
         ),
       ),
       Expanded(
         child: Icon(
-          CustomIcons.link,
+          Icons.attachment,
           color: Colors.white,
           size: 24,
         ),
       ),
       Expanded(
         child: Icon(
-          CustomIcons.scale,
+          Icons.text_fields,
           color: Colors.white,
           size: 24,
         ),

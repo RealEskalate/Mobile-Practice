@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import '../../models/article.dart';
 import 'article_bloc_index.dart';
 
 class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
@@ -21,12 +22,18 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
         emit(PublishingArticle());
         try {
           // ArticleRepository articleRepository = ArticleRepository();
-          print(event.title);
-          print(event.subtitle);
-          print(event.discription);
-          // Todo impliment the publish part
-          // the event has title, subtitle and discription
-          // Article article = await articleRepository.publish();
+          Article a = Article(
+            title: event.title,
+            content: event.discription,
+            authorName: "Adrian Smith",
+            imageUrl:
+                "https://ichef.bbci.co.uk/news/976/cpsprodpb/4A61/production/_124314091_hi065097776.jpg",
+            ratingValue: 0,
+            numberOfComments: 0,
+            authorProfileUrl:
+                "https://previews.123rf.com/images/rido/rido2002/rido200200099/141040315-happy-smiling-african-doctor-looking-at-camera-in-medical-office-portrait-of-black-man-doctor-workin.jpg?fj=1",
+            createdAt: DateTime.now(),
+          );
 
           emit(PublishSuccesful());
           await Future.delayed(const Duration(seconds: 1));
