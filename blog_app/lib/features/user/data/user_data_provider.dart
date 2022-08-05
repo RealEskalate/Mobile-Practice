@@ -4,7 +4,7 @@ import 'package:blog_app/core/http_client.dart';
 import 'package:blog_app/features/user/domain/entities/user.dart';
 import 'package:dio/dio.dart';
 
-class UserProvide {
+class UserProvider {
   final dio = createDio();
 
   void getUserModel() async {
