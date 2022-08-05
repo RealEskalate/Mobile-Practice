@@ -23,9 +23,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final AuthRepository authRepo = new AuthRepository(
+  final AuthRepository authRepo = AuthRepository(
       authDataProvider: AuthDataProvider(httpClient: http.Client()));
-  final SecureStorage secureStorage = new SecureStorage();
+  final SecureStorage secureStorage = SecureStorage();
 
   final CommentRepository commentRepository = CommentRepository(
     dataProvider: CommentProvider(
@@ -47,11 +47,9 @@ class MyApp extends StatelessWidget {
                       ..add(CommentLoad()),
               ),
               BlocProvider(
-                create: (context) => ArticleDetailBloc(
-                  articleDetailRepository: this.articleDetailRepository,
-                )..add(GetArticleById("1")),
-                //context.read<ArticleDetailBloc>().add(GetArticleById("1"));
-              ),
+                  create: (context) => ArticleDetailBloc(
+                        articleDetailRepository: this.articleDetailRepository,
+                      )),
               BlocProvider(
                 create: (context) => FilterBloc(
                     articlesRepository:

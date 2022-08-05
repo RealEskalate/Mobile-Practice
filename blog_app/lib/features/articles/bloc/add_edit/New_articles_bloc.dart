@@ -53,7 +53,7 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
           print(event.discription);
           // Todo impliment the update part
           // the event has title, subtitle and discription
-
+          
           emit(UpdateSuccesful());
           await Future.delayed(const Duration(seconds: 1));
           ;

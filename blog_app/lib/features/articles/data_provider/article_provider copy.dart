@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/article copy.dart';
+import '../models/article.dart';
 
 class ApiProvider {
   final Dio _dio = Dio();

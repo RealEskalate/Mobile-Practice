@@ -1,7 +1,7 @@
 
 
 import '../data_provider/article_provider copy.dart';
-import '../models/article copy.dart';
+import '../models/article.dart';
 
 class ArticleDetailRepository {
   final _provider = ApiProvider();

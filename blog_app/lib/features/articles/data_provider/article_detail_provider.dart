@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../models/article copy.dart';
+import '../models/article.dart';
 
 //
 

@@ -2,11 +2,8 @@ import 'package:bloc/bloc.dart';
 
 import 'package:equatable/equatable.dart';
 
-import '../../models/article copy.dart';
+import '../../models/article.dart';
 import '../../repository/article_detail_repository.dart';
-
-
-
 
 part 'article_detail_event.dart';
 
@@ -17,12 +14,21 @@ class ArticleDetailBloc extends Bloc<ArticleDetailEvent, ArticleDetailState> {
 
   ArticleDetailBloc({required this.articleDetailRepository})
       : super(ArticleDetailInitial()) {
-    on<GetArticleById>((event, emit) async {
+    // on<GetArticleById>((event, emit) async {
+    //   emit(ArticleDetailInitial());
+    //   try {
+    //     final article =
+    //         await articleDetailRepository.getArticleById(event.articleId);
+    //     emit(ArticleSuccessState(article));
+    //   } catch (error) {
+    //     emit(ArticleErrorState(error.toString()));
+    //   }
+    // });
+
+    on<GetArticle>((event, emit) async {
       emit(ArticleDetailInitial());
       try {
-        final article =
-            await articleDetailRepository.getArticleById(event.articleId);
-        emit(ArticleSuccessState(article));
+        emit(ArticleSuccessState(event.article));
       } catch (error) {
         emit(ArticleErrorState(error.toString()));
       }

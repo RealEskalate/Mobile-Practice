@@ -6,6 +6,12 @@ class Styles {
       fontWeight: FontWeight.w600,
       fontFamily: "Poppins",
       color: Colors.black);
+  static const bodyTextStyle = TextStyle(
+      height: 1.5,
+      fontSize: 16,
+      fontWeight: FontWeight.normal,
+      fontFamily: "Poppins",
+      color: Colors.black);
   static const articleCardTitleStyle = TextStyle(
       fontSize: 18,
       fontFamily: "Poppins",
