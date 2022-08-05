@@ -1,4 +1,4 @@
-import 'package:blog_app/features/articles/presentation/articles_detail/article_details_page.dart';
+import 'package:blog_app/features/articles/presentation/articles_detail/articles_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:readmore/readmore.dart';
@@ -21,7 +21,8 @@ class ArticleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, ArticleDetailPage.rounteName);
+        Navigator.pushNamed(context, ArticleDetail.routeName,
+            arguments: article);
       },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 8.0),
@@ -42,7 +43,7 @@ class ArticleCard extends StatelessWidget {
                 ),
                 Body(
                   imageUrl: article.imageUrl,
-                  content: article.content,
+                  content: article.title,
                   numberOfComments: article.numberOfComments,
                 ),
                 const Divider(

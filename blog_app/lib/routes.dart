@@ -1,8 +1,9 @@
 import 'package:blog_app/features/articles/presentation/add_edit_article/New_article.dart';
+import 'package:blog_app/features/articles/presentation/articles_detail/articles_details.dart';
 import 'package:blog_app/features/articles/presentation/articles_list/articles.dart';
 import 'package:blog_app/features/profile/presentation/pages/profiles.dart';
 import 'package:flutter/material.dart';
-import 'features/articles/presentation/articles_detail/article_details_page.dart';
+import 'features/articles/models/article.dart';
 import 'features/auth/presentation/pages/index.dart';
 
 class PageRouter {
@@ -26,9 +27,12 @@ class PageRouter {
           return const AddArticlePage();
         });
 
-      case ArticleDetailPage.rounteName:
+      case ArticleDetail.routeName:
+        Article args = settings.arguments as Article;
         return MaterialPageRoute(builder: (context) {
-          return ArticleDetailPage();
+          return ArticleDetail(
+            article: args,
+          );
         });
 
       case RegisterPage.rounteName:

@@ -6,7 +6,6 @@ import 'dart:convert';
 
 import '../../auth/domain/entities/user.dart';
 
-
 List<Comment> commentFromJson(String str) =>
     List<Comment>.from(json.decode(str).map((x) => Comment.fromJson(x)));
 
@@ -17,12 +16,14 @@ class Comment {
   Comment({
     required this.id,
     required this.user,
+    this.userName = "Adrian Smith",
     required this.text,
     required this.createdAt,
     required this.updatedAt,
   });
 
   String id;
+  final String userName;
   User user;
   String text;
   DateTime createdAt;
