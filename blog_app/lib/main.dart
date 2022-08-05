@@ -21,32 +21,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-        value: authRepo,
-        child: MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (_) => SignupBloc(
-                  authRepository: authRepo,
-                ),
-              ),
-              BlocProvider(
-                create: (context) => LoginBloc(
-                  authRepository: authRepo,
-                ),
-              ),
-            ],
-            child:
-                BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Blog demo',
-                theme: ThemeData(
-                  primarySwatch: Colors.blue,
-                ),
-                initialRoute: LoginPage.rounteName,
-                onGenerateRoute: PageRouter.generateRoute,
-              );
-            })));
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => authRepo,
+        ),
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => SignupBloc(
+              authRepository: authRepo,
+            ),
+          ),
+          BlocProvider(
+            create: (context) => LoginBloc(
+              authRepository: authRepo,
+            ),
+          ),
+        ],
+        child: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Blog demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            initialRoute: LoginPage.rounteName,
+            onGenerateRoute: PageRouter.generateRoute,
+          );
+        }),
+      ),
+    );
   }
 }

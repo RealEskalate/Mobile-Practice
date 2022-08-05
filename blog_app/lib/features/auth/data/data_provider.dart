@@ -3,24 +3,12 @@ import 'package:blog_app/core/http_client.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:blog_app/core/secure_storage.dart';
-import 'package:blog_app/features/user/data/model/user.dart';
 
 class AuthDataProvider {
   final _baseURL = "https://blog-app-backend.onrender.com";
   final http.Client httpClient;
   SecureStorage _secureStorage = SecureStorage();
   AuthDataProvider({required this.httpClient});
-
-  void getUserModel() async {
-    try {
-      // _clien.dio.get(path)
-      final dio = createDio();
-      var response = await dio.get('/user');
-      print(response.data);
-    } catch (e) {
-      print("object");
-    }
-  }
 
   Future<bool> signUp(
       {required String fullName,
