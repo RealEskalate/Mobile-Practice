@@ -161,7 +161,7 @@ class _ProfileState extends State<Profile> {
                                       ],
                                     ),
                                   ),
-                                  articleTiles()
+                                  articleTiles(context)
                                 ],
                               ),
                             )),

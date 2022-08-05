@@ -50,9 +50,9 @@ List<Article> articles = const [
     "Step design sprint for ux beginner",
   )
 ];
-articleTiles() {
+articleTiles(BuildContext context) {
   return Container(
-    height: 500,
+    height: MediaQuery.of(context).size.height * 0.8,
     child: ListView.separated(
         separatorBuilder: (BuildContext context, int index) => const SizedBox(
               height: 15,
