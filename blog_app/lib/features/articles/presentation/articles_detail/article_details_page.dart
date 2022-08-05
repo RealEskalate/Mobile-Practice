@@ -1,5 +1,5 @@
-
 // import 'package:flutter/cupertino.dart';
+import 'package:blog_app/features/auth/domain/entities/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -13,11 +13,9 @@ import '../../data_provider/mockArticleDetail.dart';
 import '../../models/article.dart';
 import '../../models/comment.dart';
 
-
-
 class ArticleDetailPage extends StatelessWidget {
   static const String rounteName = "/signup";
-    @override
+  @override
   Widget build(BuildContext context) {
     // return _buildArticle(context);
     return BlocBuilder<ArticleDetailBloc, ArticleDetailState>(
@@ -34,18 +32,17 @@ class ArticleDetailPage extends StatelessWidget {
       },
     );
   }
-
 }
 
 Widget _buildArticle(BuildContext context, Article article) {
   final cardColor = const Color(0xF6F6F6);
   final myController = TextEditingController();
-  var username = article.authorUserId.email;
+  var username = article.authorName;
   String postedDate = article.createdAt.toString();
   String title = article.title;
   String image = article.imageUrls[0];
   String content = article.content[0];
-      // "The number of daily active Facebook users grew to 1.96 billion. That marked a turnaround from last year, when the social network reported a decline in users for the first time.\n\nThe drop wiped billions from the firm's market value.\n\nSince executives disclosed the fall in February, the firm's share price has nearly halved. But shares jumped 19% in after-hours trade on Wednesday.";
+  // "The number of daily active Facebook users grew to 1.96 billion. That marked a turnaround from last year, when the social network reported a decline in users for the first time.\n\nThe drop wiped billions from the firm's market value.\n\nSince executives disclosed the fall in February, the firm's share price has nearly halved. But shares jumped 19% in after-hours trade on Wednesday.";
   List<Comment> comments = MockComment().comments;
   Widget CommentCard(comment) {
     return Padding(
@@ -55,7 +52,7 @@ Widget _buildArticle(BuildContext context, Article article) {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
-            title:Row(
+            title: Row(
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -103,27 +100,25 @@ Widget _buildArticle(BuildContext context, Article article) {
                     ],
                   ),
                 ),
-
               ],
             ),
             trailing: editDelete(comment),
           ),
-
         ),
       ),
     );
   }
+
   return Scaffold(
     appBar: AppBar(
-
       title: Center(
           child: Text(
-            "Article Detail",
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Poppins',
-            ),
-          )),
+        "Article Detail",
+        style: TextStyle(
+          color: Colors.black,
+          fontFamily: 'Poppins',
+        ),
+      )),
     ),
     body: SingleChildScrollView(
       child: Container(
@@ -208,12 +203,10 @@ Widget _buildArticle(BuildContext context, Article article) {
               fit: BoxFit.fill,
             ),
             Padding(
-
               padding: const EdgeInsets.fromLTRB(12.0, 30.0, 10.0, 10.0),
               child: DropCapText(
                 content,
                 dropCapPosition: DropCapPosition.start,
-
 
                 // mode: DropCapMode.inside,
                 style: TextStyle(
@@ -224,7 +217,6 @@ Widget _buildArticle(BuildContext context, Article article) {
                     fontSize: 16),
               ),
             ),
-
             Center(
               child: Row(
                 children: [
@@ -302,8 +294,7 @@ Widget _buildArticle(BuildContext context, Article article) {
                         alignment: Alignment.topLeft,
                         child: Text(
                           "16 comments",
-                          style: TextStyle(
-                              color: Colors.black, fontSize: 12),
+                          style: TextStyle(color: Colors.black, fontSize: 12),
                         )),
                   ),
                   Expanded(
@@ -333,16 +324,14 @@ Widget _buildArticle(BuildContext context, Article article) {
 
                     return Column(
                         children: comments.map((c) {
-                          return CommentCard(c);
-                        }).toList());
+                      return CommentCard(c);
+                    }).toList());
                   }
 
                   return CircularProgressIndicator();
                 },
               ),
-
             ),
-
             SizedBox(
               height: 50,
             ),
@@ -357,8 +346,7 @@ Widget _buildArticle(BuildContext context, Article article) {
                     suffixIcon: Container(
                       height: 50,
                       width: 50,
-                      padding:
-                      const EdgeInsets.fromLTRB(10.0, 3.0, 10.0, 3.0),
+                      padding: const EdgeInsets.fromLTRB(10.0, 3.0, 10.0, 3.0),
                       decoration: BoxDecoration(
                           color: Colors.blue,
                           borderRadius: BorderRadius.circular(5.0)),
@@ -368,10 +356,15 @@ Widget _buildArticle(BuildContext context, Article article) {
                           icon: Icon(Icons.send),
                           color: Colors.white,
                           onPressed: () {
-                            Comment c = Comment(user: article.authorUserId,updatedAt: DateTime.now(),createdAt: DateTime.now(),text: myController.text, id: "");
-                            BlocProvider.of<CommentBloc>(context).add(CreateComment(c));
+                            Comment c = Comment(
+                                user: User(id: "", email: "user2@gmail.com"),
+                                updatedAt: DateTime.now(),
+                                createdAt: DateTime.now(),
+                                text: myController.text,
+                                id: "");
+                            BlocProvider.of<CommentBloc>(context)
+                                .add(CreateComment(c));
                             myController.clear();
-
                           },
                         ),
                       ),
@@ -388,33 +381,32 @@ Widget _buildArticle(BuildContext context, Article article) {
     ),
   );
 }
+
 Widget _buildLoading() => Center(
-  child: CircularProgressIndicator(),
-);
+      child: CircularProgressIndicator(),
+    );
 
 Widget _buildError(BuildContext context, String msg) => Container(
-  child: Scaffold(
-    body: Center(
-      child: Text(
-        msg,
-        style: TextStyle(
-            fontSize: 15, fontWeight: FontWeight.w600, color: Colors.red),
+      child: Scaffold(
+        body: Center(
+          child: Text(
+            msg,
+            style: TextStyle(
+                fontSize: 15, fontWeight: FontWeight.w600, color: Colors.red),
+          ),
+        ),
       ),
-    ),
-  ),
-);
-PopupMenuItem _buildPopupMenuItem(String title, IconData iconData, BuildContext context, Comment comment) {
+    );
+PopupMenuItem _buildPopupMenuItem(
+    String title, IconData iconData, BuildContext context, Comment comment) {
   return PopupMenuItem(
-
     child: GestureDetector(
-      onTap: (){
-        if (title == "Edit"){
+      onTap: () {
+        if (title == "Edit") {
           BlocProvider.of<CommentBloc>(context).add(EditComment(comment));
-        }
-        else if(title == "Delete"){
+        } else if (title == "Delete") {
           BlocProvider.of<CommentBloc>(context).add(DeleteComment(comment));
         }
-
       },
       child: Row(
         children: [
@@ -429,11 +421,12 @@ PopupMenuItem _buildPopupMenuItem(String title, IconData iconData, BuildContext 
   );
 }
 
-Widget editDelete( Comment comment) {
+Widget editDelete(Comment comment) {
   // print("one");
-  return PopupMenuButton(itemBuilder: (context){
-    return[
-      _buildPopupMenuItem('Edit', Icons.edit,context, comment),
-      _buildPopupMenuItem('Delete', Icons.delete,context, comment),];
+  return PopupMenuButton(itemBuilder: (context) {
+    return [
+      _buildPopupMenuItem('Edit', Icons.edit, context, comment),
+      _buildPopupMenuItem('Delete', Icons.delete, context, comment),
+    ];
   });
 }

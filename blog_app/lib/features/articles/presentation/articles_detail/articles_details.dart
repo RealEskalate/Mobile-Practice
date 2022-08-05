@@ -1,5 +1,6 @@
 import 'package:blog_app/features/articles/bloc/article_detail/article_detail_bloc.dart';
 import 'package:blog_app/features/articles/utils/styles.dart';
+import 'package:blog_app/features/auth/domain/entities/user.dart';
 import 'package:drop_cap_text/drop_cap_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -367,7 +368,7 @@ Widget _buildArticle(BuildContext context, Article article) {
                           color: Colors.white,
                           onPressed: () {
                             Comment c = Comment(
-                                user: article.authorUserId,
+                                user: User(id: "", email: "user2@gmail.com"),
                                 updatedAt: DateTime.now(),
                                 createdAt: DateTime.now(),
                                 text: myController.text,
