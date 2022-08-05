@@ -29,12 +29,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           final token = jsonDecode(response) as Map<String, dynamic>;
           // print("token");
           // print(token);
-          if (!await _secureStorage.hasToken()) {
-            // print("checking token");
-            await _secureStorage.persistEmailAndToken('event.email', 'token');
-            // print("after writing");
-          }
+          // print("checking token");
+          await _secureStorage.persistEmailAndToken(
+              'event.email', token['access_token']);
+          // print("after writing");
           // print("try successful");
+
+          authRepository.getUser();
+
           emit(state.copyWith(formState: SubmissionSuccess()));
         } catch (e) {
           // print("try not successful");

@@ -38,7 +38,8 @@ class _LoginFormState extends State<LoginForm> {
           // print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
           if (state.formState is SubmissionSuccess) {
             // context.go("/home");
-            Navigator.pushNamed(context, "/homepage");
+            // TODO: ADD THE ROUTE HERE
+            // Navigator.pushNamed(context, "/signup");
           }
         },
         child: Form(
@@ -48,13 +49,13 @@ class _LoginFormState extends State<LoginForm> {
               BlocBuilder<LoginBloc, LoginState>(
                 builder: (context, state) {
                   return CustomTextField(
-                      key: const Key("signInEmailField"),
-                      hintText: 'Email',
-                      inputType: TextInputType.emailAddress,
-                      validator: (value) =>
-                          _validator.validateEmail(value)?.toString(),
-                      onChanged: (value) => email = value,
-                      );
+                    key: const Key("signInEmailField"),
+                    hintText: 'Email',
+                    inputType: TextInputType.emailAddress,
+                    validator: (value) =>
+                        _validator.validateEmail(value)?.toString(),
+                    onChanged: (value) => email = value,
+                  );
                 },
               ),
               SizedBox(
@@ -102,7 +103,7 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-             const ForgotPasswordButton(),
+              const ForgotPasswordButton(),
               SocialIcons(
                 onPressed: () {},
               ),

@@ -1,4 +1,3 @@
-
 import 'package:blog_app/features/auth/data/auth_data_index.dart';
 
 class AuthRepository {
@@ -6,11 +5,15 @@ class AuthRepository {
 
   AuthRepository({required this.authDataProvider});
 
-   Future<String> login({
+  Future<String> login({
     required String email,
     required String password,
   }) async {
     return await authDataProvider.signIn(email: email, password: password);
+  }
+
+  void getUser() async {
+    authDataProvider.getUserModel();
   }
 
   Future<void> signup({
@@ -21,5 +24,4 @@ class AuthRepository {
     await authDataProvider.signUp(
         fullName: fullName, email: email, password: password);
   }
-
 }

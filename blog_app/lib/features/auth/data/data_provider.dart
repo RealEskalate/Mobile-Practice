@@ -1,35 +1,41 @@
 import 'dart:convert';
+import 'package:blog_app/core/http_client.dart';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+import 'package:blog_app/core/secure_storage.dart';
+import 'package:blog_app/features/user/data/model/user.dart';
 
 class AuthDataProvider {
   final _baseURL = "https://blog-app-backend.onrender.com";
   final http.Client httpClient;
-
+  SecureStorage _secureStorage = SecureStorage();
   AuthDataProvider({required this.httpClient});
+
+  void getUserModel() async {
+    try {
+      // _clien.dio.get(path)
+      final dio = createDio();
+      var response = await dio.get('/user');
+      print(response.data);
+    } catch (e) {
+      print("object");
+    }
+  }
 
   Future<bool> signUp(
       {required String fullName,
       required String email,
       required String password}) async {
-
-    final response = await httpClient.post(
-      Uri.parse('$_baseURL/api/user'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        "Access-Control_Allow_Origin": "*", 
-        "Access-Control-Allow-Credentials": "true"
-      },
-
-      body: jsonEncode(<String, dynamic>{
-        "email": email,
-        "password": password,
-        "fullName": fullName,
-      }),
-    );
+    var body = jsonEncode(<String, dynamic>{
+      "email": email,
+      "password": password,
+      "fullName": fullName,
+    });
+    final response = await createDio().post("/api/user", data: body);
     if (response.statusCode == 201) {
       return true;
     } else {
-      throw Exception(jsonDecode(response.body)['body']);
+      throw Exception(jsonDecode(response.data)['body']);
     }
   }
 
@@ -40,16 +46,12 @@ class AuthDataProvider {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, dynamic>{
-        "email": email, 
-        "password": password}),
+      body: jsonEncode(<String, dynamic>{"email": email, "password": password}),
     );
     if (response.statusCode == 201) {
-      
       return response.body;
     } else {
       throw Exception('Failed to login user');
     }
   }
-
 }
