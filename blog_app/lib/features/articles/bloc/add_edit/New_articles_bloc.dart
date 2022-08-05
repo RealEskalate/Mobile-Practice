@@ -24,7 +24,7 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
           // ArticleRepository articleRepository = ArticleRepository();
           Article a = Article(
             title: event.title,
-            content: event.discription,
+            content: [],
             authorName: "Adrian Smith",
             imageUrl:
                 "https://ichef.bbci.co.uk/news/976/cpsprodpb/4A61/production/_124314091_hi065097776.jpg",
@@ -33,6 +33,13 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
             authorProfileUrl:
                 "https://previews.123rf.com/images/rido/rido2002/rido200200099/141040315-happy-smiling-african-doctor-looking-at-camera-in-medical-office-portrait-of-black-man-doctor-workin.jpg?fj=1",
             createdAt: DateTime.now(),
+            authorUserId: '',
+            categories: [],
+            description: event.discription,
+            id: '',
+            imageUrls: [],
+            rating: {},
+            updatedAt: DateTime.now(),
           );
 
           emit(PublishSuccesful());
@@ -53,7 +60,7 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
           print(event.discription);
           // Todo impliment the update part
           // the event has title, subtitle and discription
-          
+
           emit(UpdateSuccesful());
           await Future.delayed(const Duration(seconds: 1));
           ;
