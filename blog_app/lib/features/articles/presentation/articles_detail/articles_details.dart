@@ -1,4 +1,5 @@
 import 'package:blog_app/features/articles/bloc/article_detail/article_detail_bloc.dart';
+import 'package:blog_app/features/articles/utils/styles.dart';
 import 'package:drop_cap_text/drop_cap_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -52,7 +53,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
 Widget _buildArticle(BuildContext context, Article article) {
   final cardColor = const Color(0xF6F6F6);
   final myController = TextEditingController();
-  var username = article.authorUserId.email;
+  var username = article.authorName;
   String postedDate = article.createdAt.toString();
   String title = article.title;
   String image = article.imageUrl;
@@ -100,18 +101,11 @@ Widget _buildArticle(BuildContext context, Article article) {
                           fontSize: 12,
                         ),
                       ),
-                      Text(
-                        comment.text,
-                        // softWrap: false,
-                        maxLines: 3,
-                        overflow: TextOverflow.visible,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.normal,
-                          fontSize: 16,
-                        ),
-                      ),
+                      Text(comment.text,
+                          // softWrap: false,
+                          maxLines: 3,
+                          overflow: TextOverflow.visible,
+                          style: Styles.bodyTextStyle),
                     ],
                   ),
                 ),
@@ -126,13 +120,22 @@ Widget _buildArticle(BuildContext context, Article article) {
 
   return Scaffold(
     appBar: AppBar(
+      leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.black,
+        ),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+      elevation: 0,
+      backgroundColor: Colors.white,
+      centerTitle: true,
       title: Center(
           child: Text(
         "Article Detail",
-        style: TextStyle(
-          color: Colors.black,
-          fontFamily: 'Poppins',
-        ),
+        style: Styles.drawerTileStyle.copyWith(color: Colors.black),
       )),
     ),
     body: SingleChildScrollView(
@@ -154,12 +157,9 @@ Widget _buildArticle(BuildContext context, Article article) {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "$username",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                          ),
-                        ),
+                        Text("$username",
+                            style: Styles.bodyTextStyle
+                                .copyWith(fontWeight: FontWeight.bold)),
                         Text("$postedDate"),
                       ],
                     ),
@@ -224,12 +224,7 @@ Widget _buildArticle(BuildContext context, Article article) {
                 dropCapPosition: DropCapPosition.start,
 
                 // mode: DropCapMode.inside,
-                style: TextStyle(
-                    height: 1.5,
-                    color: Colors.black,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.normal,
-                    fontSize: 16),
+                style: Styles.bodyTextStyle,
               ),
             ),
             Center(
