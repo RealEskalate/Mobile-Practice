@@ -10,20 +10,45 @@ class AuthDataProvider {
   SecureStorage _secureStorage = SecureStorage();
   AuthDataProvider({required this.httpClient});
 
+  // Future<bool> signUp(
+  //     {required String fullName,
+  //     required String email,
+  //     required String password}) async {
+  //   var body = jsonEncode(<String, dynamic>{
+  //     "email": email,
+  //     "password": password,
+  //     "fullName": fullName,
+  //   });
+  //   return true;
+  //   // Response<String> response = await createDio().post("/user", data: body);
+  //   // if (response.statusCode == 201) {
+  //   //   return true;
+  //   // } else {
+  //   //   throw Exception(jsonDecode(response.data!)['body']);
+  //   // }
+  // }
+
   Future<bool> signUp(
       {required String fullName,
       required String email,
       required String password}) async {
-    var body = jsonEncode(<String, dynamic>{
-      "email": email,
-      "password": password,
-      "fullName": fullName,
-    });
-    final response = await createDio().post("/api/user", data: body);
+    final response = await httpClient.post(
+      Uri.parse('$_baseURL/api/user'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        "Access-Control_Allow_Origin": "*",
+        "Access-Control-Allow-Credentials": "true"
+      },
+      body: jsonEncode(<String, dynamic>{
+        "email": email,
+        "password": password,
+        "fullName": fullName,
+      }),
+    );
     if (response.statusCode == 201) {
       return true;
     } else {
-      throw Exception(jsonDecode(response.data)['body']);
+      throw Exception(jsonDecode(response.body)['body']);
     }
   }
 

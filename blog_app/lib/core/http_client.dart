@@ -7,8 +7,7 @@ Dio createDio() {
 
   dio.options.baseUrl = "https://blog-app-backend.onrender.com/api";
   dio.interceptors.addAll([
-    AuthInterceptor(dio), // add this line before LogInterceptor
-    LogInterceptor(),
+    AuthInterceptor(dio),
   ]);
   return dio;
 }
@@ -18,6 +17,11 @@ class AuthInterceptor extends Interceptor {
   final _localStorage = SecureStorage();
 
   AuthInterceptor(this._dio);
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    return handler.next(response);
+  }
 
   @override
   void onRequest(

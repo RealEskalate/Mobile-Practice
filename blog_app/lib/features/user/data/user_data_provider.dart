@@ -22,13 +22,13 @@ class UserProvider {
     String url = "/user";
 
     var response = await dio.get(url);
-    return User.fromJson(jsonDecode(response.data));
+    return response.data;
   }
 
   Future<List<User>> getAllUser() async {
     String url = "/user/all";
-    var usersResponse = await dio.get(url);
-    List<dynamic> usersBody = jsonDecode(usersResponse.data);
-    return usersBody.map((userMap) => User.fromJson(userMap)).toList();
+    Response<String> usersResponse = await dio.get(url);
+    List<dynamic> cp = jsonDecode(usersResponse.data!);
+    return cp.map((userMap) => User.fromJson(userMap)).toList();
   }
 }
